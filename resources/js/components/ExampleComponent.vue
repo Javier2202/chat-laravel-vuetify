@@ -2,13 +2,11 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Example Component</div>
-
-                    <div class="card-body">
-                        I'm an example component.
-                    </div>
-                </div>
+      <v-alert
+  border="left"
+  color="green"
+  type="success"
+>Alert de preuba</v-alert>
             </div>
         </div>
     </div>

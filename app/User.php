@@ -36,4 +36,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //relationships
+    public function conversaciones()
+    {
+        return $this->hasMany('App\Models\Conversacion','de');
+    }
 }

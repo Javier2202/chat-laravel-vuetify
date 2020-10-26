@@ -21,7 +21,7 @@ class CreateConversacionsTable extends Migration
 
             $table->id();
             $table->foreignId('de')->constrained('users');
-            $table->string('para');
+            $table->foreignId('para')->constrained('users');
             $table->text('ultimo_mensaje')->nullable();
             $table->dateTime('fecha_ultimo_mensaje',0)->nullable();
             $table->boolean('notificaciones')->default(true);

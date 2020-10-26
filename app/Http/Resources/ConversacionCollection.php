@@ -14,6 +14,14 @@ class ConversacionCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'data' => ConversacionResource::collection($this->collection),
+            'links' => [
+                'self' => route('conversacion.index')
+            ],
+            'meta' => [
+                'numero_conversaciones' => $this->collection->count(),
+            ]
+        ];
     }
 }

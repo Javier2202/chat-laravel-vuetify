@@ -10,9 +10,14 @@ class Conversacion extends Model
 
 
     //relationships
-    public function user()
+    public function user_de()
     {
         return $this->belongsTo('App\User','de');
+    }
+
+    public function user_para()
+    {
+        return $this->belongsTo('App\User','para');
     }
 
     public function mensajes()

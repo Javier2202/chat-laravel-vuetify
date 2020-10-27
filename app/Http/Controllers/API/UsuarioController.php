@@ -16,7 +16,6 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**
@@ -36,9 +35,9 @@ class UsuarioController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show($user_id)
     {
-        return UsuarioResource::make(User::findOrFail($user->id));
+        return UsuarioResource::make(User::findOrFail($user_id));
     }
 
     /**

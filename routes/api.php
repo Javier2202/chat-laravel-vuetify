@@ -18,6 +18,18 @@ use Illuminate\Support\Facades\Route;
     return $request->user();
 });*/
 
-Route::apiResource('conversacion','API\ConversacionController');
-Route::apiResource('conversacion.mensaje','API\MensajeController')->except('update');
-Route::apiResource('usuario','API\UsuarioController');
+Route::prefix('auth')->group(function(){
+    Route::post('login', 'API\AuthController@login')->name('login');
+    //Route::post('registro', 'API\AuthController@registro');
+
+    Route::middleware(['auth:api'])->group(function(){
+        Route::get('logout', 'API\AuthController@logout')->name('logout');
+        //Route::get('user', 'API\AuthController@user');
+    });
+});
+
+Route::middleware(['auth:api'])->group(function(){
+    Route::apiResource('conversacion','API\ConversacionController');
+    Route::apiResource('conversacion.mensaje','API\MensajeController')->except('update');
+    Route::apiResource('usuario','API\UsuarioController');
+});

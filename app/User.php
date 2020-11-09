@@ -11,6 +11,8 @@ class User extends Authenticatable
 {
     use HasApiTokens, Notifiable;
 
+    protected $with = ['imagen'];
+
     /**
      * The attributes that are mass assignable.
      *
@@ -42,5 +44,10 @@ class User extends Authenticatable
     public function conversaciones()
     {
         return $this->hasMany('App\Models\Conversacion','de');
+    }
+
+    public function imagen()
+    {
+        return $this->morphOne('App\Models\Imagen','imageneable');
     }
 }

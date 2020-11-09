@@ -17,7 +17,7 @@ class ConversacionController extends Controller
      */
     public function index()
     {
-        return ConversacionCollection::make(Conversacion::all());
+        return ConversacionCollection::make(Conversacion::where('de',auth()->user()->id));
     }
 
     /**

@@ -20,12 +20,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('auth')->group(function(){
     Route::post('login', 'API\AuthController@login')->name('login');
-    //Route::post('registro', 'API\AuthController@registro');
-
-    Route::middleware(['auth:api'])->group(function(){
-        Route::get('logout', 'API\AuthController@logout')->name('logout');
-        //Route::get('user', 'API\AuthController@user');
-    });
+    //Route::post('registro', 'API\AuthController@registro')->name('user.create');
+    Route::get('logout', 'API\AuthController@logout')->middleware('auth:api')->name('logout');
 });
 
 Route::middleware(['auth:api'])->group(function(){

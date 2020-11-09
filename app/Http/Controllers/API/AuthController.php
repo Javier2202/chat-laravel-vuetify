@@ -3,53 +3,78 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use Carbon\Carbon;
+use App\Http\Resources\UsuarioResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use App\User;
 
 class AuthController extends Controller
 {
     public function login(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(),[
             'email' => 'required|string|email',
             'password' => 'required|string',
-            'remember_me' => 'boolean'
+            'remember_me' => 'boolean|nullable'
         ]);
 
-        $credentials = request(['email', 'password']);
+        if($validator->fails())
+            return response()->json(['errors' => $validator->errors()]);
 
-        if (!Auth::attempt($credentials))
+        $remember = $request->has('remember_me') ? $request->boolean('remember_me') : false;
+
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials,$remember)) {
+            $user = auth()->user();
+            $success['token'] = $user->createToken('Chat Api')->accessToken;
+
+            return response()->json($success, 200);
+
+        } else {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+    }
+
+    public function logout()
+    {
+        if (Auth::check()) {
+            auth()->user()->tokens->each(function($token,$key){
+                $token->delete();
+            });
+            
             return response()->json([
-                'message' => 'Unauthorized'
-            ], 401);
-
-        $user = $request->user();
-        $tokenResult = $user->createToken('Personal Access Token');
-
-        $token = $tokenResult->token;
-        if ($request->remember_me)
-            $token->expires_at = Carbon::now()->addWeeks(1);
-        $token->save();
+                'message' => 'Logged Out'
+            ]);
+        }
 
         return response()->json([
-            'access_token' => $tokenResult->accessToken,
-            'token_type' => 'Bearer',
-            'expires_at' => Carbon::parse($token->expires_at)->toDateTimeString()
+            'error' => 'no estas loggeado',
         ]);
     }
 
-    public function logout(Request $request)
+    public function registro(Request $request)
     {
-        $request->user()->token()->revoke();
+        $validator = Validator::make($request->all(),[
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required'
+        ]);
+
+
+        if($validator->fails())
+            return response()->json(['errors' => $validator->errors]);
+        
+        request()->merge(['password' => bcrypt(request('password'))]);
+        
+        $user = User::create(request()->input());
+        
+        $access_token = $user->createToken('Chat Api')->accessToken;
 
         return response()->json([
-            'message' => 'Successfully logged out'
+            'user' => UsuarioResource::make($user),
+            'access_token' => $access_token,
         ]);
-    }
-
-    public function registro()
-    {
-        # code...
     }
 }

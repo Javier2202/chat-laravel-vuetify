@@ -12,7 +12,7 @@
                             <v-card
                                 elevation="6">
 
-                                <v-card-title 
+                                <v-card-title
                                     class="">
                                     ¡Bienvenido!
                                 </v-card-title>
@@ -20,7 +20,7 @@
                                 <v-card-subtitle>
                                     Iniciar Sesión
                                 </v-card-subtitle>
-                            
+
                                 <v-card-text>
                                     <v-text-field
                                         name="email"
@@ -28,8 +28,8 @@
                                         label="email"
                                         hide-details="auto"
                                         ></v-text-field>
-                                    
-                                    <v-text-field 
+
+                                    <v-text-field
                                         name="password"
                                         v-model="password"
                                         label="Contraseña"
@@ -69,11 +69,21 @@
                                             >Olvide mi contraseña
                                             </v-btn>
                                         </v-col>
-                                    </v-row>                                    
+                                        <v-col
+                                            cols="12">
+                                            <v-btn
+                                                text
+                                                text-center
+                                                :to="{name:'registro'}"
+                                                >Registrarse
+                                            </v-btn>
+
+                                        </v-col>
+                                    </v-row>
                                 </v-card-actions>
 
                             </v-card>
-                            
+
                         </v-col>
                     </v-row>
                 </v-container>
@@ -84,14 +94,14 @@
             </v-footer>
         </v-app>
 
-        
+
     </div>
 </template>
 
 <script>
     export default {
         mounted() {
-            
+
         },
         data:function(){
         	return{

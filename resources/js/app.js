@@ -12,6 +12,8 @@ import Vuetify from 'vuetify';
 
 Vue.use(Vuetify)
 
+import router from './rutas'
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -23,8 +25,9 @@ Vue.use(Vuetify)
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
+Vue.component('app',require('./components/AppComponent').default);
 Vue.component('login-component',require('./components/LoginComponent.vue').default);
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('registro-component',require('./components/RegistroComponent').default);
 Vue.component('conversaciones', require('./components/ConversacionesComponent.vue').default);
 
 /**
@@ -35,5 +38,6 @@ Vue.component('conversaciones', require('./components/ConversacionesComponent.vu
 
 const app = new Vue({
     el: '#app',
+    router,
     vuetify: new Vuetify(),
 });

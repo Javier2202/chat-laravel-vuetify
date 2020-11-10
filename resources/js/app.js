@@ -10,9 +10,9 @@ window.Vue = require('vue');
 //import Vuetify from '../plugins/vuetify';
 import Vuetify from 'vuetify';
 
-Vue.use(Vuetify)
+Vue.use(Vuetify);
 
-import router from './rutas'
+import router from './rutas';
 
 /**
  * The following block of code may be used to automatically register your
@@ -25,7 +25,7 @@ import router from './rutas'
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('app',require('./components/AppComponent').default);
+Vue.component('app',require('./components/AppComponent.vue').default);
 Vue.component('login-component',require('./components/LoginComponent.vue').default);
 Vue.component('registro-component',require('./components/RegistroComponent').default);
 Vue.component('conversaciones', require('./components/ConversacionesComponent.vue').default);

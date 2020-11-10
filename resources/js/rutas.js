@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import Router from 'vue-route';
+import Router from 'vue-router';
 
 Vue.use(Router);
 
@@ -8,17 +8,17 @@ export default new Router({
         {
             path: '/',
             name: 'home',
-            component: require('./views/login'),
+            component: require('./views/login').default,
         },
         {
             path: '/registro',
             name: 'registro',
-            component: require('./views/registro'),
+            component: require('./views/registro').default,
         },
         {
             path: '/conversaciones',
             name: 'conversaciones',
-            component: require('./views/conversacion'),
+            component: require('./views/conversacion').default,
             meta: {
                 requiresAuth: true
             }

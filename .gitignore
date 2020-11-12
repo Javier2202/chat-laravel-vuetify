@@ -44,3 +44,6 @@ _ide_*
 # Recommended template: Node.gitignore
 
 dist/
+
+
+/storage/app/imagenes/

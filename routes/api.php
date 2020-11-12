@@ -20,12 +20,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('auth')->group(function(){
     Route::post('login', 'API\AuthController@login')->name('login');
-    //Route::post('registro', 'API\AuthController@registro')->name('user.create');
+    Route::post('usuario', 'API\UsuarioController@store')->name('usuario.store');
     Route::get('logout', 'API\AuthController@logout')->middleware('auth:api')->name('logout');
 });
 
 Route::middleware(['auth:api'])->group(function(){
     Route::apiResource('conversacion','API\ConversacionController');
     Route::apiResource('conversacion.mensaje','API\MensajeController')->except('update');
-    Route::apiResource('usuario','API\UsuarioController');
+    Route::apiResource('usuario','API\UsuarioController')->except('store');
 });

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUsuario;
 use App\Http\Resources\UsuarioResource;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class UsuarioController extends Controller
@@ -25,19 +27,20 @@ class UsuarioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUsuario $request)
     {
-        $validator = Validator::make($request->all(),[
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required'
-        ]);
+        //request()->merge(['password' => bcrypt(request('password'))]);
+        
+        $datosValidados = $request->validated();
 
-        if($validator->fails())
-            return response()->json(['errors' => $validator->errors]);
-        
-        request()->merge(['password' => bcrypt(request('password'))]);
-        
+        //Storage::disk('local')->put($request->file('imagen')->, 'Contents');
+
+        //Storage::putFileAs('photos', new File('/path/to/photo'), 'photo.jpg');
+
+        $url = $request->file('imagen')->storeAs('imagenes/perfil', $request->file('imagen')->getClientOriginalName());
+
+        return $url;
+
         $user = User::create(request()->input());
         
         $access_token = $user->createToken('Chat Api')->accessToken;

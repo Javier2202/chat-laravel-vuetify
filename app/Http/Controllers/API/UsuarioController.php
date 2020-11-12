@@ -33,10 +33,6 @@ class UsuarioController extends Controller
         
         $datosValidados = $request->validated();
 
-        //Storage::disk('local')->put($request->file('imagen')->, 'Contents');
-
-        //Storage::putFileAs('photos', new File('/path/to/photo'), 'photo.jpg');
-
         $url = $request->file('imagen')->storeAs('imagenes/perfil', $request->file('imagen')->getClientOriginalName());
 
         return $url;

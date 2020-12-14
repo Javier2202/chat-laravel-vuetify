@@ -21,6 +21,9 @@ class UsuarioResource extends JsonResource
                 'nombre' => $this->resource->name,
                 'email' => $this->resource->email,
             ],
+            'relationship' => [
+                'imagen' => ImagenResource::make($this->resource->imagen),
+            ],
             'links' =>[
                 'self' => route('usuario.show',$this->resource),
             ]

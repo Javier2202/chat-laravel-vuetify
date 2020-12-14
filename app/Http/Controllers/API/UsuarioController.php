@@ -28,19 +28,24 @@ class UsuarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(StoreUsuario $request)
-    {
-        //request()->merge(['password' => bcrypt(request('password'))]);
-        
-        $datosValidados = $request->validated();
-
+    {        
         $url = $request->file('imagen')->storeAs('imagenes/perfil', $request->file('imagen')->getClientOriginalName());
 
-        return $url;
+        request()->merge(['password' => bcrypt(request('password'))]);        
 
         $user = User::create(request()->input());
         
-        $access_token = $user->createToken('Chat Api')->accessToken;
+        $user->imagen()->create([
+            'url' => $url,
+            'nombre' => $request->file('imagen')->getClientOriginalName(),
+            'tipo' => $request->imagen->extension(),
+            'carpeta' =>'imagenes/perfil',
+            'imageneable_type' => 'App\User',
+            'imageneable_id' => $user->id
+        ]);
 
+        $access_token = $user->createToken('Chat Api')->accessToken;
+        
         return response()->json([
             'user' => UsuarioResource::make($user),
             'access_token' => $access_token,

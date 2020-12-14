@@ -31,7 +31,6 @@ class AuthController extends Controller
             $success['token'] = $user->createToken('Chat Api')->accessToken;
 
             return response()->json($success, 200);
-
         } else {
             return response()->json(['error' => 'Unauthorized'], 401);
         }

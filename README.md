@@ -73,7 +73,6 @@ Puedes encontrar mucho más de cómo utilizar este proyecto en nuestra [Wiki](ht
 ## Versionado 📌
 
 Usamos [SemVer](http://semver.org/) para el versionado. Para todas las versiones disponibles.
-
 ## Autor ✒️
 
 * **Javier Ruiz Trejo** - *Trabajo Inicial* - [Javier2202](https://github.com/Javier2202/)

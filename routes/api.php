@@ -28,4 +28,5 @@ Route::middleware(['auth:api'])->group(function(){
     Route::apiResource('conversacion','API\ConversacionController');
     Route::apiResource('conversacion.mensaje','API\MensajeController')->except('update');
     Route::apiResource('usuario','API\UsuarioController')->except('store');
+    Route::get('usuario/{id}/imagen','API\ImageController')->name('usuario.imagen');
 });

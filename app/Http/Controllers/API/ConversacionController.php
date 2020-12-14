@@ -5,7 +5,9 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ConversacionCollection;
 use App\Http\Resources\ConversacionResource;
+use App\Http\Resources\UsuarioResource;
 use App\Models\Conversacion;
+use Facade\FlareClient\Http\Response;
 use Illuminate\Http\Request;
 
 class ConversacionController extends Controller
@@ -15,9 +17,9 @@ class ConversacionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return ConversacionCollection::make(Conversacion::where('de',auth()->user()->id));
+        return ConversacionCollection::make($request->user()->conversaciones);
     }
 
     /**

@@ -1,7 +1,6 @@
 # Chat Laravel con Vuetify
 
-Realizar un chat usando laravel con el medio de autenticación que laravel trae por defecto y para mejorar la interfaz usamos vutify.
-Ademas de usar Pusher como nuestro servidor de Notificaciones.
+Realizar un chat en tiempo real usando pusher para transmitir eventos, laravel como backend y vue js para frontend.
 
 ## Comenzando 🚀
 
@@ -62,15 +61,10 @@ _Agrega notas adicionales sobre como hacer deploy_
 
 ## Construido con 🛠️
 
-_Menciona las herramientas que utilizaste para crear tu proyecto_
-
-* [Laravel](http://www.dropwizard.io/1.0.2/docs/) - El framework web usado
-* [Vue js](https://maven.apache.org/) - Manejador de dependencias
-* [Vutify](https://rometools.github.io/rome/) - Usado para generar RSS
-
-## Contribuyendo 🖇️
-
-Por favor lee el [CONTRIBUTING.md](https://github.com/Javier2202/) para detalles de nuestro código de conducta, y el proceso para enviarnos pull requests.
+* [Laravel](https://laravel.com/docs/7.x/releases) - Desarrolo de la API
+* [Vue js](https://vuejs.org/) - Interfaz grafica para la API
+* [Vutify](https://vuetifyjs.com/en/) - Mejora del diseño de interfaz.
+* [Pusher](https://pusher.com/) - Transmitir eventos en tiempo real
 
 ## Wiki 📖
 
@@ -78,21 +72,8 @@ Puedes encontrar mucho más de cómo utilizar este proyecto en nuestra [Wiki](ht
 
 ## Versionado 📌
 
-Usamos [SemVer](http://semver.org/) para el versionado. Para todas las versiones disponibles, mira los [tags en este repositorio](https://github.com/tu/proyecto/tags).
+Usamos [SemVer](http://semver.org/) para el versionado. Para todas las versiones disponibles.
 
-## Autores ✒️
-
-_Menciona a todos aquellos que ayudaron a levantar el proyecto desde sus inicios_
+## Autor ✒️
 
 * **Javier Ruiz Trejo** - *Trabajo Inicial* - [villanuevand](https://github.com/villanuevand)
-
-También puedes mirar la lista de todos los [contribuyentes](https://github.com/your/project/contributors) quíenes han participado en este proyecto. 
-
-## Licencia 📄
-
-## Expresiones de Gratitud 🎁
-
-* Comenta a otros sobre este proyecto 📢
-* Invita una cerveza 🍺 o un café ☕ a alguien del equipo. 
-* Da las gracias públicamente 🤓.
-* etc.

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LoginUsuario;
 use App\Http\Resources\UsuarioResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,17 +12,8 @@ use App\User;
 
 class AuthController extends Controller
 {
-    public function login(Request $request)
+    public function login(LoginUsuario $request)
     {
-        $validator = Validator::make($request->all(),[
-            'email' => 'required|string|email',
-            'password' => 'required|string',
-            'remember_me' => 'boolean|nullable'
-        ]);
-
-        if($validator->fails())
-            return response()->json(['errors' => $validator->errors()]);
-
         $remember = $request->has('remember_me') ? $request->boolean('remember_me') : false;
 
         $credentials = $request->only('email', 'password');
@@ -32,7 +24,7 @@ class AuthController extends Controller
 
             return response()->json($success, 200);
         } else {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return response()->json(['errors' => ['password' => 'Contraseña invalida']], 401);
         }
     }
 

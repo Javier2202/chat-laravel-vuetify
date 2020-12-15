@@ -56,7 +56,7 @@
                 }).then(function (response){
                     temp_this.conversaciones = response.data.data;
                 }).catch(function(error){
-                    console.log(error);
+                    temp_this.$router.go(-1);
                 });
             }
         } 

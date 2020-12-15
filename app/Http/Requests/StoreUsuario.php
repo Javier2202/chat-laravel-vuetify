@@ -27,10 +27,9 @@ class StoreUsuario extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string',
-            'email' => 'required|email:rfc|unique:users|unique:users,email',
-            'password' => 'required',
-            'imagen' => 'required|mimes:jpeg,jpg,png|image|max:1024'
+            'email' => 'required|string|email|exists:users,email',
+            'password' => 'required|string',
+            'remember_me' => 'boolean|nullable'
         ];
     }
 
@@ -44,7 +43,7 @@ class StoreUsuario extends FormRequest
         $response = [
             'status' => 'failure',
             'status_code' => 400,
-            'message' => 'Bad Request',
+            'message' => 'Hay campos invalidos',
             'errors' => $validator->errors(),
             'links' =>[
                 'self' => route('usuario.store'),

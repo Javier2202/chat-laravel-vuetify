@@ -110,8 +110,8 @@
         },
         data:function(){
         	return{
-        		email: 'jruizt850@gmail.com',
-        		password: 'Afrodita22',
+        		email: null,
+        		password: null,
                 remember_me: false,
                 show_password: false,
                 show_msj: false,
@@ -135,9 +135,6 @@
                         localStorage.setItem('authToken',response.data.token);
                         console.log(response.data);
                         temp_this.$router.push({ path: '/conversaciones' });
-                    }else{
-                        temp_this.msj_error = response.data.code + response.data.error;
-                        temp_this.show_msj = !this.show_msj;
                     }
                 }).catch(function (error) {
                     console.log(error);

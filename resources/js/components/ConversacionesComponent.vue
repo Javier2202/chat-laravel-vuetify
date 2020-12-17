@@ -7,6 +7,15 @@
             v-on:click="logout"
             >Cerrar sesión
         </v-btn>
+        <v-row>
+            <v-col
+                cols="4">
+                <conversacion v-for="conversacion in conversaciones" :key="conversacion.id" v-bind:atributos="conversacion.atributos" v-bind:relationships="conversacion.relationships"></conversacion>
+            </v-col>
+            <v-col
+                cols="8">
+            </v-col>
+        </v-row>
     </div>
 </template>
 
@@ -59,6 +68,6 @@
                     temp_this.$router.go(-1);
                 });
             }
-        } 
+        }
     }
 </script>

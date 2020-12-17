@@ -26,9 +26,11 @@ import router from './rutas';
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('app',require('./components/AppComponent.vue').default);
+Vue.component('error-component',require('./components/ErrorComponent').default);
 Vue.component('login-component',require('./components/LoginComponent.vue').default);
 Vue.component('registro-component',require('./components/RegistroComponent').default);
 Vue.component('conversaciones', require('./components/ConversacionesComponent.vue').default);
+Vue.component('conversacion', require('./components/ConversacionComponent').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

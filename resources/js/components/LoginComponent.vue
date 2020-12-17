@@ -116,6 +116,7 @@
                 show_password: false,
                 show_msj: false,
                 msj_error: null,
+                errors: [],
                 /*rules: {
                     required: value => !!value || 'Required.',
                     min: v => v.length >= 8 || 'Min 1 character',
@@ -138,7 +139,8 @@
                     }
                 }).catch(function (error) {
                     console.log(error);
-                    temp_this.msj_error = error;
+                    temp_this.msj_error = error.response.data.status_code+' '+error.response.data.message;
+                    temp_this.errors = error.response.data.errors;
                     temp_this.show_msj = !temp_this.show_msj;
                 });
             },

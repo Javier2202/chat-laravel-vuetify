@@ -1,6 +1,25 @@
 <template>
     <div>
-        {{ rel.para.atributos.nombre }}
+        <v-list-item>
+            <v-avatar
+                v-if="rel.para.relationship.imagen == null"
+                color="primary"
+                size="60">
+                    <span class="white--text headline">
+                        {{ rel.para.atributos.nombre[0].toUpperCase() }}
+                    </span>
+            </v-avatar>
+
+            <v-list-item-avatar v-if="rel.para.relationship.imagen != null">
+                <v-img :src="rel.para.relationship.imagen.links.self"></v-img>
+            </v-list-item-avatar>
+
+            <v-list-item-content>
+                <v-list-item-title v-html="rel.para.atributos.nombre"></v-list-item-title>
+                <v-list-item-subtitle v-html="atr.ultimo_mensaje"></v-list-item-subtitle>
+            </v-list-item-content>
+        </v-list-item>
+        <v-divider></v-divider>
     </div>
 </template>
 <script>
@@ -18,6 +37,7 @@
             }*/
             this.atr = this.atributos;
             this.rel = this.relationships;
+            this.getImagen();
         },
         data: function () {
             return {
@@ -29,6 +49,24 @@
                 },*/
                 atr:null,
                 rel: [],
+            }
+        },
+        methods: {
+            getImagen: function(){
+                var temp_this = this;
+                if(temp_this.rel.para.relationship != null){
+                    axios({
+                        method: 'get',
+                        url: 'api/v1/usuario/'+temp_this.rel.para.id+'/imagen',
+                        headers: {
+                            Authorization: 'Bearer ' + localStorage.getItem("authToken"),
+                        }
+                    }).then(function (response) {
+                        console.log(response);
+                    }).catch(function (error) {
+                        //console.log(error);
+                    });
+                }
             }
         }
     }

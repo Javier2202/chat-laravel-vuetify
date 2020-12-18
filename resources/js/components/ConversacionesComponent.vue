@@ -1,6 +1,5 @@
 <template>
     <div>
-        Conversaciones
         <v-btn
             text
             text-center
@@ -10,7 +9,15 @@
         <v-row>
             <v-col
                 cols="4">
-                <conversacion v-for="conversacion in conversaciones" :key="conversacion.id" v-bind:atributos="conversacion.atributos" v-bind:relationships="conversacion.relationships"></conversacion>
+                <v-list three-line>
+                    <v-subheader>Conversaciones</v-subheader>
+                    <conversacion
+                        v-for="conversacion in conversaciones"
+                        :key="conversacion.id"
+                        v-bind:atributos="conversacion.atributos"
+                        v-bind:relationships="conversacion.relationships">
+                    </conversacion>
+                </v-list>
             </v-col>
             <v-col
                 cols="8">

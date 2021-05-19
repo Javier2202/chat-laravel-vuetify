@@ -48,7 +48,7 @@ class UsuarioController extends Controller
         
         return response()->json([
             'user' => UsuarioResource::make($user),
-            'access_token' => $access_token,
+            'token' => $access_token,
         ]);
     }
 

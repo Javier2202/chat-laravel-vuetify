@@ -1,12 +1,28 @@
 <template>
     <div>
-        Conversaciones
         <v-btn
             text
             text-center
             v-on:click="logout"
             >Cerrar sesión
         </v-btn>
+        <v-row>
+            <v-col
+                cols="4">
+                <v-list three-line>
+                    <v-subheader>Conversaciones</v-subheader>
+                    <conversacion
+                        v-for="conversacion in conversaciones"
+                        :key="conversacion.id"
+                        v-bind:atributos="conversacion.atributos"
+                        v-bind:relationships="conversacion.relationships">
+                    </conversacion>
+                </v-list>
+            </v-col>
+            <v-col
+                cols="8">
+            </v-col>
+        </v-row>
     </div>
 </template>
 
@@ -56,9 +72,9 @@
                 }).then(function (response){
                     temp_this.conversaciones = response.data.data;
                 }).catch(function(error){
-                    console.log(error);
+                    temp_this.$router.go(-1);
                 });
             }
-        } 
+        }
     }
 </script>

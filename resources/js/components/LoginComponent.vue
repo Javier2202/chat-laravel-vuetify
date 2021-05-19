@@ -110,12 +110,13 @@
         },
         data:function(){
         	return{
-        		email: 'jruizt850@gmail.com',
-        		password: 'Afrodita22',
+        		email: null,
+        		password: null,
                 remember_me: false,
                 show_password: false,
                 show_msj: false,
                 msj_error: null,
+                errors: [],
                 /*rules: {
                     required: value => !!value || 'Required.',
                     min: v => v.length >= 8 || 'Min 1 character',
@@ -135,13 +136,11 @@
                         localStorage.setItem('authToken',response.data.token);
                         console.log(response.data);
                         temp_this.$router.push({ path: '/conversaciones' });
-                    }else{
-                        temp_this.msj_error = response.data.code + response.data.error;
-                        temp_this.show_msj = !this.show_msj;
                     }
                 }).catch(function (error) {
                     console.log(error);
-                    temp_this.msj_error = error;
+                    temp_this.msj_error = error.response.data.status_code+' '+error.response.data.message;
+                    temp_this.errors = error.response.data.errors;
                     temp_this.show_msj = !temp_this.show_msj;
                 });
             },
